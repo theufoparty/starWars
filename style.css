@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap");
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: black;
+	margin: 0;
+	font-family: "Roboto";
+	color: #ebd71c;
+}
+
+.evilCharacterPortrait,
+.goodCharacterPortrait {
+	width: 200px;
+}
+
+.evil-characters,
+.good-characters {
+	display: flex;
+	flex-direction: column;
+}
+
+.characters {
+	width: 850px;
+	display: flex;
+	flex-wrap: wrap;
+	margin-inline: auto;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 36px;
+	justify-content: space-between;
+}
+
+.characterPortrait:hover {
+	border: 2px solid blue;
+}
+
+.character-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.player1 {
+	width: 200px;
+}
+
+.player2 {
+	width: 200px;
+}
+
+.player1-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-inline: 0;
+	margin-bottom: 0;
+}
+
+.player2-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.tallestResult,
+.heaviestResult,
+.genderResult,
+.skinColorResult,
+.eyeColorResult,
+.hairColorResult {
+	color: #ebd71c;
+}
+
+.darken1 {
+	opacity: 0.5;
+	border: 2px solid blue;
+}
+
+.darken2 {
+	opacity: 0.5;
+	border: 2px solid red;
+}
+
+.player1-name {
+	color: #ebd71c;
+}
+
+.player2-name {
+	color: #ebd71c;
+}
+
+.character-text {
+	color: #ebd71c;
+}
+
+.fight-button {
+	color: #ebd71c;
+	border: 12px solid #ebd71c;
+	padding: 20px;
+	height: 100px;
+	width: 200px;
+	background: transparent;
+	text-decoration: none;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+}
+
+.fight-button:hover {
+	background-color: #d2be03;
+	border-color: #d2be03;
+	color: black;
+}
+
+.fight-button:active,
+.fight:focus {
+	background-color: #b8a40a;
+	border-color: #b8a40a;
+	color: black;
+}
+
+.character-info {
+	position: absolute;
+	top: 60%;
+	z-index: 4;
+	width: 40%;
+	max-width: 960px;
+	min-width: 600px;
+	height: fit-content;
+	overflow: hidden;
+	background: #fff;
+	margin-left: auto;
+	margin-right: 0;
+}
