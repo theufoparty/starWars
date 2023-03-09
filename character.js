@@ -7,6 +7,7 @@ class Character {
 		this.height = Number(height);
 		this.mass = Number(mass);
 		this.hairColor = hair_color;
+		console.log(mass);
 		this.skinColor = skin_color;
 		this.eyeColor = eye_color;
 		this.gender = gender;

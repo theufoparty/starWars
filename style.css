@@ -9,44 +9,52 @@ body {
 	margin: 0;
 	font-family: "Roboto";
 	color: #ebd71c;
+	height: 100vh;
 }
 
-.evilCharacterPortrait,
-.goodCharacterPortrait {
-	width: 200px;
+.characterPortrait {
+	width: 150px;
 }
 
 .evil-characters,
 .good-characters {
 	display: flex;
-	flex-direction: column;
 }
 
 .characters {
-	width: 850px;
 	display: flex;
 	flex-wrap: wrap;
 	margin-inline: auto;
-	justify-content: center;
-	gap: 10px;
 	margin-top: 36px;
 	justify-content: space-between;
 }
 
-.characterPortrait:hover {
+.good-characters .characterPortrait:hover {
 	border: 2px solid blue;
 }
 
-.character-container {
+.evil-characters .characterPortrait:hover {
+	border: 2px solid rgb(99, 0, 0);
+}
+
+.darken {
+	opacity: 0.5;
+}
+
+.good-characters .darken {
+	border: 2px solid blue;
+}
+
+.evil-characters .darken {
+	border: 2px solid rgb(99, 0, 0);
+}
+
+.player-container {
 	display: flex;
 	justify-content: space-between;
 }
 
-.player1 {
-	width: 200px;
-}
-
-.player2 {
+.player-img {
 	width: 200px;
 }
 
@@ -73,21 +81,7 @@ body {
 	color: #ebd71c;
 }
 
-.darken1 {
-	opacity: 0.5;
-	border: 2px solid blue;
-}
-
-.darken2 {
-	opacity: 0.5;
-	border: 2px solid red;
-}
-
-.player1-name {
-	color: #ebd71c;
-}
-
-.player2-name {
+.player-name {
 	color: #ebd71c;
 }
 
@@ -133,4 +127,20 @@ body {
 	background: #fff;
 	margin-left: auto;
 	margin-right: 0;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.result-container {
+	position: absolute;
+	z-index: 4;
+	background-color: white;
+	height: 60vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }

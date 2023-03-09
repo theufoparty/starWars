@@ -1,78 +1,58 @@
 let player1 = null;
 let player2 = null;
 
-const setPlayer1 = (character) => {
-	const characterPortrait = document.querySelector(".player1");
-	characterPortrait.src = `/full-body/${character.id}.png`;
-	characterPortrait.dataset.id = character.id;
-	const characterName = document.querySelector(".player1-name");
-	characterName.innerText = character.name;
-	characterPortrait.dataset.name = character.name;
-};
-
-const setPlayer2 = (character) => {
-	const characterPortrait = document.querySelector(".player2");
-	characterPortrait.src = `/full-body/${character.id}.png`;
-	characterPortrait.dataset.id = character.id;
-	const characterName = document.querySelector(".player2-name");
-	characterName.innerText = character.name;
-	characterPortrait.dataset.name = character.name;
-};
-
 const goodCharactersContainer = document.querySelector(".good-characters");
 const goodCharacters = {};
 
-const goodCharacterIDs = [1, 2, 3];
-
-const appendGoodCharacterPortrait = (character) => {
-	const goodCharacterPortrait = document.createElement("img");
-	goodCharacterPortrait.classList.add("goodCharacterPortrait");
-	goodCharacterPortrait.src = `/portraits/${character.id}.png`;
-	goodCharacterPortrait.id = character.id;
-	goodCharacterPortrait.addEventListener("click", () => {
-		if (!player1) {
-			player1 = character;
-			setPlayer1(character);
-			goodCharacterPortrait.classList.add("darken1");
-		} else {
-			if (player2) {
-				const previousPortrait = document.getElementById(player2.id);
-				previousPortrait.classList.remove("darken2");
-			}
-			player2 = character;
-			setPlayer2(character);
-			goodCharacterPortrait.classList.add("darken2");
-		}
-	});
-	goodCharactersContainer.append(goodCharacterPortrait);
-};
+const goodCharacterIDs = ["1", "2", "3"];
 
 const evilCharactersContainer = document.querySelector(".evil-characters");
 const evilCharacters = {};
 
-const evilCharacterIDs = [4, 10, 13];
+const evilCharacterIDs = ["4", "10", "13"];
 
-const appendEvilCharacterPortrait = (character) => {
-	const evilCharacterPortrait = document.createElement("img");
-	evilCharacterPortrait.classList.add("evilCharacterPortrait");
-	evilCharacterPortrait.src = `/portraits/${character.id}.png`;
-	evilCharacterPortrait.id = character.id;
-	evilCharacterPortrait.addEventListener("click", () => {
-		if (!player1) {
+const player1Container = document.querySelector(".player1-container");
+const player2Container = document.querySelector(".player2-container");
+
+const setPlayer = (character) => {
+	const isGood = goodCharacterIDs.includes(character.id);
+	const playerContainer = isGood ? player1Container : player2Container;
+	let characterPortrait = playerContainer.querySelector(".player-img");
+	let characterName = playerContainer.querySelector(".player-name");
+	characterPortrait.src = `/full-body/${character.id}.png`;
+	characterPortrait.dataset.id = character.id;
+	characterName.innerText = character.name;
+	characterPortrait.dataset.name = character.name;
+};
+
+const appendCharacterPortrait = (character) => {
+	const isGood = goodCharacterIDs.includes(character.id);
+	const characterPortrait = document.createElement("img");
+	characterPortrait.classList.add("characterPortrait");
+	characterPortrait.src = `/portraits/${character.id}.png`;
+	characterPortrait.id = character.id;
+	characterPortrait.addEventListener("click", () => {
+		if (isGood) {
+			if (player1) {
+				const previousPortrait = document.getElementById(player1.id);
+				previousPortrait.classList.remove("darken");
+			}
 			player1 = character;
-			setPlayer1(character);
-			evilCharacterPortrait.classList.add("darken1");
 		} else {
 			if (player2) {
 				const previousPortrait = document.getElementById(player2.id);
-				previousPortrait.classList.remove("darken2");
+				previousPortrait.classList.remove("darken");
 			}
 			player2 = character;
-			setPlayer2(character);
-			evilCharacterPortrait.classList.add("darken2");
 		}
+		characterPortrait.classList.add("darken");
+		setPlayer(character);
 	});
-	evilCharactersContainer.append(evilCharacterPortrait);
+	if (isGood) {
+		goodCharactersContainer.append(characterPortrait);
+	} else {
+		evilCharactersContainer.append(characterPortrait);
+	}
 };
 
 const createCharacterInfo = (character) => {
@@ -118,12 +98,10 @@ const createCharacterInfo = (character) => {
 	document.body.append(characterInfo);
 };
 
-const player1Container = document.querySelector(".player1-container");
 player1Container.addEventListener("click", () => {
 	createCharacterInfo(player1);
 });
 
-const player2Container = document.querySelector(".player2-container");
 player2Container.addEventListener("click", () => {
 	createCharacterInfo(player2);
 });
@@ -131,18 +109,11 @@ player2Container.addEventListener("click", () => {
 const fetchCharacterData = (id) =>
 	fetch(`https://swapi.dev/api/people/${id}/`).then((res) => res.json());
 
-evilCharacterIDs.forEach(async (id) => {
+[...evilCharacterIDs, ...goodCharacterIDs].forEach(async (id) => {
 	const characterData = await fetchCharacterData(id);
 	const character = new Character(characterData);
-	evilCharacters[character.id] = character;
-	appendEvilCharacterPortrait(character);
-});
-
-goodCharacterIDs.forEach(async (id) => {
-	const characterData = await fetchCharacterData(id);
-	const character = new Character(characterData);
-	goodCharacters[character.id] = character;
-	appendGoodCharacterPortrait(character);
+	// evilCharacters[character.id] = character;
+	appendCharacterPortrait(character);
 });
 
 const fightButton = document.querySelector(".fight-button");
