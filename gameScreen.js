@@ -61,38 +61,50 @@ class GameScreen {
 				`Eye Color: ${character.eyeColor}`,
 				`Movies: ${character.movies.map((movie) => movie.title).join(", ")}`,
 				`Home Planet: ${character.homePlanet.name}`,
-				`Vehicles: ${character.vehicles.map((vehicle) => vehicle.name).join(", ")}`,
-				`Starships: ${character.starships.map((starship) => starship.name).join(", ")}`,
+				`Vehicles: ${
+					!character.vehicles.length
+						? "Owns no vehicles"
+						: character.vehicles.map((vehicle) => vehicle.name).join(", ")
+				}`,
+				`Starships: ${
+					!character.starships.length
+						? "Owns no Starships"
+						: character.starships.map((starship) => starship.name).join(", ")
+				}`,
 			];
 			this.informationBox.addInformation(informationList);
 		};
 
 		const showFirstApperanceCallBack = () => {
 			const firstApperance = character.firstApperance();
-			const informationList = [`${character.name} first appeared in a movie ${firstApperance}`];
-			this.informationBox.addInformation(informationList);
-		};
-
-		const showMostExpensiveVehicle = () => {
-			const mostExpensiveVehicle = character.mostExpensiveVehicle();
 			const informationList = [
-				`${character.name}´s most expensive vehicle costs ${mostExpensiveVehicle} amount of credits`,
+				`${character.name} first appeared in ${firstApperance.title} and it was released ${firstApperance.release_date}`,
 			];
 			this.informationBox.addInformation(informationList);
 		};
 
-		const showMostExpensiveStarship = () => {
-			const mostExpensiveStarship = character.mostExpensiveStarship();
-			const informationList = [
-				`${character.name}´s most expensive starship costs ${mostExpensiveStarship} amount of credits`,
-			];
+		const showMostExpensiveTransportationDevice = () => {
+			const informationList = [];
+			const mostExpensiveTransportationDevice = character.mostExpensiveTransportationDevice();
+			if (!mostExpensiveTransportationDevice) {
+				informationList.push(
+					`${character.name} doesn't have any transportation devices. They only use legs or wheels`
+				);
+			} else if (mostExpensiveTransportationDevice.cost_in_credits === "unknown") {
+				informationList.push(
+					` No one knows how much the ${mostExpensiveTransportationDevice.name} costs. BUT IT IS THE ONLY ONE`
+				);
+			} else {
+				informationList.push(
+					`${character.name}´s most expensive transportation device is ${mostExpensiveTransportationDevice.name}, and it costs ${mostExpensiveTransportationDevice.cost_in_credits} credits`
+				);
+			}
 			this.informationBox.addInformation(informationList);
 		};
 
-		this.informationBox.addButton("Most Expensive Starship", showMostExpensiveStarship);
+		this.informationBox.addButton("Most Expensive", showMostExpensiveTransportationDevice);
 		this.informationBox.addButton("Character Information", showInformationCallBack);
-		this.informationBox.addButton("Most Expensive Vehicle", showMostExpensiveVehicle);
-		this.informationBox.addButton("first movie", showFirstApperanceCallBack);
+		this.informationBox.addButton("First movie", showFirstApperanceCallBack);
 		showInformationCallBack();
 		this.informationBox.showBox();
 	};

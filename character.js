@@ -1,4 +1,7 @@
 const parseVehiclePrice = (priceString) => {
+	if (!priceString) {
+		return -1;
+	}
 	if (priceString === "unknown") {
 		return 0;
 	}
@@ -30,35 +33,26 @@ class Character {
 		this.skinColor = skin_color;
 		this.eyeColor = eye_color;
 		this.gender = gender;
-		this.homePlanet = fetch(homeworld)
-			.then((res) => res.json())
-			.then((data) => {
-				this.homePlanet = data;
-			});
+		this.homePlanet = fetchData(homeworld).then((homePlanet) => {
+			this.homePlanet = homePlanet;
+		});
 		this.vehicles = [];
 		vehicles.forEach((vehiclesUrl) => {
-			console.log(this.vehicles);
-			fetch(vehiclesUrl)
-				.then((res) => res.json())
-				.then((vehiclesData) => {
-					this.vehicles.push(vehiclesData);
-				});
+			fetchData(vehiclesUrl).then((vehiclesData) => {
+				this.vehicles.push(vehiclesData);
+			});
 		});
 		this.starships = [];
 		starships.forEach((starshipsUrl) => {
-			fetch(starshipsUrl)
-				.then((res) => res.json())
-				.then((starshipsData) => {
-					this.starships.push(starshipsData);
-				});
+			fetchData(starshipsUrl).then((starshipsData) => {
+				this.starships.push(starshipsData);
+			});
 		});
 		this.movies = [];
 		films.forEach((filmUrl) => {
-			fetch(filmUrl)
-				.then((res) => res.json())
-				.then((movieData) => {
-					this.movies.push(movieData);
-				});
+			fetchData(filmUrl).then((movieData) => {
+				this.movies.push(movieData);
+			});
 		});
 	}
 
@@ -66,42 +60,35 @@ class Character {
 		const sortedMovies = this.movies.sort((a, b) => {
 			return new Date(a.release_date) - new Date(b.release_date);
 		});
-		return sortedMovies[0].release_date;
-
-		console.log(sortedMovies.map((m) => m.release_date));
+		return sortedMovies[0];
 	};
 
 	mostExpensiveVehicle = () => {
+		console.log(this.vehicles);
 		const mostExpensive = this.vehicles.sort((a, b) => {
 			return parseVehiclePrice(b.cost_in_credits) - parseVehiclePrice(a.cost_in_credits);
 		});
-		if (!mostExpensive[0]) {
-			return 0;
-		}
-		return mostExpensive[0].cost_in_credits;
-
-		console.log(mostExpensive.map((m) => m.cost_in_credits));
+		return mostExpensive[0];
 	};
 
 	mostExpensiveStarship = () => {
+		console.log(this.starships);
 		const mostExpensive = this.starships.sort((a, b) => {
 			return parseVehiclePrice(b.cost_in_credits) - parseVehiclePrice(a.cost_in_credits);
 		});
-		if (!mostExpensive[0]) {
-			return 0;
-		}
-		return mostExpensive[0].cost_in_credits;
-
-		console.log(mostExpensive.map((m) => m.cost_in_credits));
+		return mostExpensive[0];
 	};
 
-	// compareMostExpensiveSpaceRocket = () => {
-	// 	if (character.mostExpensiveStarship > character.mostExpensiveVehicle) {
-	// 		return `The most expensive one: ${character.mostExpensiveStarship.name}`;
-	// 	} else {
-	// 		return `The most expensive one: ${character.mostExpensiveVehicle.name}`;
-	// 	}
-	// };
+	mostExpensiveTransportationDevice = () => {
+		const mostExpensiveVehicle = this.mostExpensiveVehicle();
+		const mostExpensiveStarship = this.mostExpensiveStarship();
+		console.log({ mostExpensiveVehicle, mostExpensiveStarship });
+
+		return parseVehiclePrice(mostExpensiveVehicle?.cost_in_credits) <
+			parseVehiclePrice(mostExpensiveStarship?.cost_in_credits)
+			? mostExpensiveStarship
+			: mostExpensiveVehicle;
+	};
 
 	printCharacter = () => {
 		console.log(`Name; ${this.name}`);
