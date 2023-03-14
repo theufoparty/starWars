@@ -1,8 +1,7 @@
 class Game {
 	player1 = null;
 	player2 = null;
-	goodCharacters = [];
-	evilCharacters = [];
+
 	setPlayer = (character) => {
 		if (character.isGood) {
 			this.player1 = character;
@@ -10,13 +9,7 @@ class Game {
 			this.player2 = character;
 		}
 	};
-	addCharacter = (character) => {
-		if (character.isGood) {
-			this.goodCharacters.push(character);
-		} else {
-			this.evilCharacters.push(character);
-		}
-	};
+
 	getPlayer1 = () => this.player1;
 	getPlayer2 = () => this.player2;
 

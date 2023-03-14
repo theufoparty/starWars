@@ -1,28 +1,35 @@
 class GameScreen {
-	game = null;
 	informationBox = new InformationBox();
-	goodCharactersContainer = document.querySelector(".good-characters");
-	evilCharactersContainer = document.querySelector(".evil-characters");
+	goodCharacterContainer = document.querySelector(".good-characters-container");
+	evilCharacterContainer = document.querySelector(".evil-characters-container");
+	goodCharacterPortraitsContainer = document.querySelector(".good-characters");
+	evilCharacterPortraitsContainer = document.querySelector(".evil-characters");
 	player1Container = document.querySelector(".player1-container");
 	player2Container = document.querySelector(".player2-container");
 	fightButton = document.querySelector(".fight-button");
-
-	setGame = (game) => {
-		this.game = game;
-	};
 
 	setPlayer = (character) => {
 		const playerContainer = character.isGood ? this.player1Container : this.player2Container;
 		let characterPortrait = playerContainer.querySelector(".player-img");
 		let characterName = playerContainer.querySelector(".player-name");
-		characterPortrait.src = `/full-body/${character.id}.png`;
-		characterName.innerText = character.name;
+		playerContainer.classList.remove("un-shifted");
+		characterPortrait.classList.remove("hidden");
+		setTimeout(
+			() => {
+				characterPortrait.src = character.fullbodyUrl;
+				characterPortrait.onload = () => {
+					playerContainer.classList.add("un-shifted");
+				};
+				characterName.innerText = character.name;
+			},
+			characterPortrait.src ? 1000 : 0
+		);
 	};
 
 	addCharacterPortrait = (character) => {
 		const characterPortrait = document.createElement("img");
 		characterPortrait.classList.add("characterPortrait");
-		characterPortrait.src = `/portraits/${character.id}.png`;
+		characterPortrait.src = character.portraitUrl;
 		characterPortrait.id = character.id;
 		characterPortrait.addEventListener("click", () => {
 			if (character.isGood) {
@@ -38,14 +45,19 @@ class GameScreen {
 					previousPortrait.classList.remove("darken");
 				}
 			}
+			if (character.isGood) {
+				this.goodCharacterContainer.classList.add("selected-character");
+			} else {
+				this.evilCharacterContainer.classList.add("selected-character");
+			}
 			characterPortrait.classList.add("darken");
 			this.game.setPlayer(character);
 			this.setPlayer(character);
 		});
 		if (character.isGood) {
-			this.goodCharactersContainer.append(characterPortrait);
+			this.goodCharacterPortraitsContainer.append(characterPortrait);
 		} else {
-			this.evilCharactersContainer.append(characterPortrait);
+			this.evilCharacterPortraitsContainer.append(characterPortrait);
 		}
 	};
 
@@ -148,7 +160,8 @@ class GameScreen {
 		this.informationBox.showBox();
 	};
 
-	constructor() {
+	constructor(game) {
+		this.game = game;
 		this.player1Container.addEventListener("click", () => {
 			const character = this.game.getPlayer1();
 			this.showCharacterInformation(character);

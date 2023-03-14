@@ -1,13 +1,3 @@
-const parseVehiclePrice = (priceString) => {
-	if (!priceString) {
-		return -1;
-	}
-	if (priceString === "unknown") {
-		return 0;
-	}
-	return Number(priceString);
-};
-
 class Character {
 	constructor(characterData, isGood) {
 		this.isGood = isGood;
@@ -26,6 +16,8 @@ class Character {
 			starships,
 		} = characterData;
 		this.id = url.slice(29).slice(0, -1);
+		this.fullbodyUrl = `/full-body/${this.id}.png`;
+		this.portraitUrl = `/portraits/${this.id}.png`;
 		this.name = name;
 		this.height = Number(height);
 		this.mass = Number(mass);
@@ -33,7 +25,7 @@ class Character {
 		this.skinColor = skin_color;
 		this.eyeColor = eye_color;
 		this.gender = gender;
-		this.homePlanet = fetchData(homeworld).then((homePlanet) => {
+		fetchData(homeworld).then((homePlanet) => {
 			this.homePlanet = homePlanet;
 		});
 		this.vehicles = [];
@@ -56,6 +48,16 @@ class Character {
 		});
 	}
 
+	parsePrice = (priceString) => {
+		if (!priceString) {
+			return -1;
+		}
+		if (priceString === "unknown") {
+			return 0;
+		}
+		return Number(priceString);
+	};
+
 	firstApperance = () => {
 		const sortedMovies = this.movies.sort((a, b) => {
 			return new Date(a.release_date) - new Date(b.release_date);
@@ -66,7 +68,7 @@ class Character {
 	mostExpensiveVehicle = () => {
 		console.log(this.vehicles);
 		const mostExpensive = this.vehicles.sort((a, b) => {
-			return parseVehiclePrice(b.cost_in_credits) - parseVehiclePrice(a.cost_in_credits);
+			return this.parsePrice(b.cost_in_credits) - this.parsePrice(a.cost_in_credits);
 		});
 		return mostExpensive[0];
 	};
@@ -74,7 +76,7 @@ class Character {
 	mostExpensiveStarship = () => {
 		console.log(this.starships);
 		const mostExpensive = this.starships.sort((a, b) => {
-			return parseVehiclePrice(b.cost_in_credits) - parseVehiclePrice(a.cost_in_credits);
+			return this.parsePrice(b.cost_in_credits) - this.parsePrice(a.cost_in_credits);
 		});
 		return mostExpensive[0];
 	};
@@ -82,10 +84,9 @@ class Character {
 	mostExpensiveTransportationDevice = () => {
 		const mostExpensiveVehicle = this.mostExpensiveVehicle();
 		const mostExpensiveStarship = this.mostExpensiveStarship();
-		console.log({ mostExpensiveVehicle, mostExpensiveStarship });
 
-		return parseVehiclePrice(mostExpensiveVehicle?.cost_in_credits) <
-			parseVehiclePrice(mostExpensiveStarship?.cost_in_credits)
+		return this.parsePrice(mostExpensiveVehicle?.cost_in_credits) <
+			this.parsePrice(mostExpensiveStarship?.cost_in_credits)
 			? mostExpensiveStarship
 			: mostExpensiveVehicle;
 	};

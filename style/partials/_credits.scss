@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap");
 
+/*
+Name: StarWarsIntro.css
+URI: polarnotion.github.io/starwarsintro
+Author: Polar Notion
+Author URI: http://polarnotion.com/
+Description: A simple CSS library for creating a Star Wars Intro Crawl. May the Force be with you.
+Version: 1.0
+*/
+
 body,
 html {
 	height: 100%;
@@ -8,9 +17,12 @@ html {
 }
 
 .star-wars-intro {
+	background: url(/assets/background.jpg);
+	background-size: cover;
 	width: 100%;
 	height: 100%;
 	font-family: "Roboto";
+	font-weight: 700;
 	color: #ebd71c;
 	background-color: #000;
 	overflow: hidden;
@@ -42,7 +54,7 @@ html {
 	width: 98%;
 	height: 50em;
 	bottom: 0;
-	font-size: 3rem;
+	font-size: 80px;
 	font-weight: bold;
 	text-align: justify;
 	overflow: hidden;
@@ -62,13 +74,15 @@ html {
 .star-wars-intro .space-button {
 	color: #ebd71c;
 	border: 12px solid #ebd71c;
+	font-size: 2rem;
 	padding: 20px;
-	max-width: 50%;
 	background: transparent;
 	text-decoration: none;
 	margin: 0 auto;
 	display: block;
 	text-align: center;
+	width: 300px;
+	border: 16px;
 }
 
 .star-wars-intro .space-button:hover {
