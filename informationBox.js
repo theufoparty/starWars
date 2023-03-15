@@ -22,13 +22,30 @@ class InformationBox {
 		this.buttonContainer.innerHTML = "";
 	};
 
-	addInformation = (informationList) => {
-		this.clearTextarea();
-		informationList.forEach((paragraph) => {
-			const pElement = document.createElement("p");
-			pElement.innerText = paragraph;
-			this.textarea.append(pElement);
+	typeWrite = async (paragraphText) => {
+		const paragraphElement = document.createElement("p");
+		this.textarea.append(paragraphElement);
+		let i = 0;
+		return new Promise((resolve) => {
+			const interval = setInterval(() => {
+				console.log("setting inner test");
+				paragraphElement.innerText = paragraphText.slice(0, i);
+				i++;
+				if (i > paragraphText.length) {
+					clearInterval(interval);
+					resolve();
+				}
+			}, 25);
 		});
+	};
+
+	addInformation = async (informationList) => {
+		this.clearTextarea();
+		for (let i = 0; i < informationList.length; i++) {
+			const paragraphText = informationList[i];
+			await this.typeWrite(paragraphText);
+			console.log("done", i);
+		}
 	};
 
 	addButton = (buttonText, buttonCallBackFunction) => {

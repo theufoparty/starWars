@@ -1,0 +1,64 @@
+.button-container {
+	display: flex;
+	position: absolute;
+	bottom: 1rem;
+}
+
+.button-container button {
+	color: var(--clr-yellow);
+	font-size: 12px;
+	border: 4px solid var(--clr-yellow);
+	border-radius: 10px;
+	height: 50px;
+	width: 120px;
+	background: transparent;
+	text-decoration: none;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+	margin: 0.5rem;
+}
+
+.button-container button:hover {
+	background-color: var(--clr-yellow);
+	border-color: var(--clr-yellow);
+	color: var(--clr-black);
+}
+
+.button-container button:active,
+.button-container button:focus {
+	background-color: var(--clr-yellow);
+	border-color: var(--clr-yellow);
+	color: var(--clr-black);
+}
+
+.fight-button {
+	color: var(--clr-yellow);
+	border: 6px solid var(--clr-yellow);
+	border-radius: 16px;
+	padding: 20px;
+	height: 100px;
+	width: 200px;
+	background: transparent;
+	text-decoration: none;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+	position: absolute;
+	bottom: 13rem;
+	left: 0;
+	right: 0;
+}
+
+.fight-button:hover {
+	background-color: var(--clr-yellow);
+	border-color: var(--clr-yellow);
+	color: var(--clr-black);
+}
+
+.fight-button:active,
+.fight:focus {
+	background-color: var(--clr-yellow);
+	border-color: var(--clr-yellow);
+	color: var(--clr-black);
+}

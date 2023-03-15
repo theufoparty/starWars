@@ -1,111 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap");
-:root {
-  --character-portrait-width: calc(calc(90vw / 8) - 20px);
-  --character-portrait-border-width: calc(var(--character-portrait-width) / 30);
-  --character-portrait-border-radius: calc(var(--character-portrait-width) / 10);
-  --character-portrait-margin: calc(var(--character-portrait-width) / 20);
-  --character-total-width: calc(
-  	var(--character-portrait-width) + calc(2 * var(--character-portrait-margin))
-  );
-  --character-portrait-container-width: calc(4 * var(--character-total-width));
-  --character-full-body-height: calc(100vh - calc(calc(2 * var(--character-total-width)) + 125px));
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-body {
-  background-color: black;
-  margin: 0;
-  font-family: "Roboto";
-  color: #ebd71c;
-  height: 100vh;
-}
-
-.characterPortrait {
-  width: var(--character-portrait-width);
-  height: var(--character-portrait-width);
-  border: var(--character-portrait-border-width) solid #ebd71c;
-  border-radius: var(--character-portrait-border-radius);
-  margin: var(--character-portrait-margin);
-}
-
-.characters {
+.button-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  position: absolute;
+  bottom: 1rem;
 }
 
-.evil-characters-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: var(--character-portrait-container-width);
-  position: fixed;
-  top: 6em;
-  right: 0;
-  margin-top: 12px;
-  margin-right: 12px;
+.button-container button {
+  color: var(--clr-yellow);
+  font-size: 12px;
+  border: 4px solid var(--clr-yellow);
+  border-radius: 10px;
+  height: 50px;
+  width: 120px;
+  background: transparent;
+  text-decoration: none;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  margin: 0.5rem;
 }
 
-.evil-characters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+.button-container button:hover {
+  background-color: var(--clr-yellow);
+  border-color: var(--clr-yellow);
+  color: var(--clr-black);
 }
 
-.good-characters-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: var(--character-portrait-container-width);
-  position: fixed;
-  top: 6em;
-  left: 0;
-  margin-top: 12px;
-  margin-left: 12px;
-}
-
-.good-characters {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.good-characters .characterPortrait:hover {
-  border: var(--character-portrait-border-width) solid blue;
-}
-
-.evil-characters .characterPortrait:hover {
-  border: var(--character-portrait-border-width) solid rgb(255, 0, 0);
-}
-
-.darken {
-  opacity: 0.5;
-}
-
-.good-characters .darken {
-  border: var(--character-portrait-border-width) solid rgb(0, 0, 255);
-}
-
-.evil-characters .darken {
-  border: var(--character-portrait-border-width) solid rgb(255, 0, 0);
-}
-
-.tallestResult,
-.heaviestResult,
-.genderResult,
-.skinColorResult,
-.eyeColorResult,
-.hairColorResult {
-  color: #ebd71c;
+.button-container button:active,
+.button-container button:focus {
+  background-color: var(--clr-yellow);
+  border-color: var(--clr-yellow);
+  color: var(--clr-black);
 }
 
 .fight-button {
-  color: #ebd71c;
-  border: 6px solid #ebd71c;
+  color: var(--clr-yellow);
+  border: 6px solid var(--clr-yellow);
   border-radius: 16px;
   padding: 20px;
   height: 100px;
@@ -122,103 +53,109 @@ body {
 }
 
 .fight-button:hover {
-  background-color: #d2be03;
-  border-color: #d2be03;
-  color: black;
+  background-color: var(--clr-yellow);
+  border-color: var(--clr-yellow);
+  color: var(--clr-black);
 }
 
 .fight-button:active,
 .fight:focus {
-  background-color: #b8a40a;
-  border-color: #b8a40a;
-  color: black;
+  background-color: var(--clr-yellow);
+  border-color: var(--clr-yellow);
+  color: var(--clr-black);
 }
 
-.character-info {
-  position: absolute;
-  top: 60%;
-  z-index: 4;
-  width: 40%;
-  max-width: 960px;
-  min-width: 600px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  overflow: hidden;
-  background: #fff;
-  margin-left: auto;
-  margin-right: 0;
+:root {
+  --character-portrait-width: calc(calc(90vw / 8) - 20px);
+  --character-portrait-border-width: calc(var(--character-portrait-width) / 30);
+  --character-portrait-border-radius: calc(var(--character-portrait-width) / 10);
+  --character-portrait-margin: calc(var(--character-portrait-width) / 20);
+  --character-total-width: calc(
+  	var(--character-portrait-width) + calc(2 * var(--character-portrait-margin))
+  );
+  --character-portrait-container-width: calc(4 * var(--character-total-width));
+  --character-full-body-height: calc(100vh - calc(calc(2 * var(--character-total-width)) + 125px));
+  --clr-black: hsl(0, 0%, 0%);
+  --clr-yellow: hsl(54, 97%, 42%);
+  --clr-red: hsl(0, 100%, 50%);
+  --clr-blue: hsl(240, 100%, 50%);
+  --clr-credits: hsl(218, 71%, 44%);
+  --roboto: "Roboto";
 }
 
-.information-box {
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: var(--clr-black);
+  margin: 0;
+  font-family: var(--roboto);
+  color: var(--clr-yellow);
+  height: 100vh;
+}
+
+.characters {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 3;
-  background-color: black;
-  height: 70vh;
-  width: 60vw;
-  padding: 1em;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 2rem;
-  border: 10px solid #d2be03;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.characterPortrait {
+  width: var(--character-portrait-width);
+  height: var(--character-portrait-width);
+  border: var(--character-portrait-border-width) solid var(--clr-yellow);
+  border-radius: var(--character-portrait-border-radius);
+  margin: var(--character-portrait-margin);
+}
+
+.evil-characters-container {
   display: flex;
   flex-direction: column;
-}
-
-.backdrop {
+  align-items: flex-end;
+  width: var(--character-portrait-container-width);
   position: fixed;
-  height: 100vh;
-  width: 100vw;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  opacity: 0.7;
-  background-color: black;
+  top: 6em;
+  right: 0;
+  margin-top: 1.5em;
+  margin-right: 1.5em;
 }
 
-.button-container {
+.evil-characters {
   display: flex;
-  position: absolute;
-  bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-.button-container button {
-  color: #ebd71c;
-  font-size: 12px;
-  border: 4px solid #ebd71c;
-  border-radius: 10px;
-  height: 40px;
-  width: 100px;
-  background: transparent;
-  text-decoration: none;
-  margin: 0 auto;
-  display: block;
-  text-align: center;
-  margin: 0.5rem;
+.good-characters-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: var(--character-portrait-container-width);
+  position: fixed;
+  top: 6em;
+  left: 0;
+  margin-top: 1.5em;
+  margin-left: 1.5em;
 }
 
-.button-container button:hover {
-  background-color: #d2be03;
-  border-color: #d2be03;
-  color: black;
+.good-characters {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.button-container button:active,
-.button-container button:focus {
-  background-color: #b8a40a;
-  border-color: #b8a40a;
-  color: black;
+.good-characters .characterPortrait:hover {
+  border: var(--character-portrait-border-width) solid var(--clr-blue);
 }
 
-.player-img {
-  width: calc(var(--character-full-body-height) * 2 / 3);
-  height: var(--character-full-body-height);
-  max-width: 40vw;
-  max-height: 60vw;
+.evil-characters .characterPortrait:hover {
+  border: var(--character-portrait-border-width) solid var(--clr-red);
+}
+
+.pick-player1,
+.pick-player2 {
+  padding: var(--character-portrait-margin);
 }
 
 .player1-container {
@@ -237,46 +174,16 @@ body {
   transform: translate(var(--character-full-body-height), 0);
 }
 
-.un-shifted {
-  transform: translate(0, 0);
+.player-img {
+  width: calc(var(--character-full-body-height) * 2 / 3);
+  height: var(--character-full-body-height);
+  max-width: 40vw;
+  max-height: 60vw;
 }
 
 .player-name {
-  color: #ebd71c;
+  color: var(--clr-yellow);
   text-align: center;
-}
-
-.character-text {
-  color: #ebd71c;
-}
-
-.backdrop {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  opacity: 0.7;
-  background-color: black;
-}
-
-.hidden {
-  display: none;
-}
-
-.h2-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  margin-inline: 1rem;
-}
-
-.logo {
-  max-width: 15em;
-  margin-inline: auto;
 }
 
 .selected-character .characterPortrait {
@@ -293,14 +200,77 @@ body {
   transition: all 1s;
 }
 
-/*
-Name: StarWarsIntro.css
-URI: polarnotion.github.io/starwarsintro
-Author: Polar Notion
-Author URI: http://polarnotion.com/
-Description: A simple CSS library for creating a Star Wars Intro Crawl. May the Force be with you.
-Version: 1.0
-*/
+.un-shifted {
+  transform: translate(0, 0);
+}
+
+.backdrop {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  background-color: var(--clr-black);
+}
+
+.darken {
+  opacity: 0.5;
+}
+
+.good-characters .darken {
+  border: var(--character-portrait-border-width) solid var(--clr-blue);
+}
+
+.evil-characters .darken {
+  border: var(--character-portrait-border-width) solid var(--clr-red);
+}
+
+.logo {
+  max-width: 18em;
+  margin-inline: auto;
+}
+
+.information-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 3;
+  background-color: var(--clr-black);
+  height: 50vh;
+  width: 60vw;
+  padding: 1em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 2rem;
+  border: 10px solid var(--clr-yellow);
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  padding: 4rem;
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+}
+
+.h2-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-inline: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
 body,
 html {
   height: 100%;
@@ -309,14 +279,13 @@ html {
 }
 
 .star-wars-intro {
-  background: url(/assets/background.jpg);
   background-size: cover;
   width: 100%;
   height: 100%;
   font-family: "Roboto";
   font-weight: 700;
-  color: #ebd71c;
-  background-color: #000;
+  color: var(--clr-yellow);
+  background-color: var(--clr-black);
   overflow: hidden;
   position: relative;
 }
@@ -327,7 +296,7 @@ html {
   font-size: 200%;
   font-weight: 400;
   margin: 20% auto;
-  color: #4ee;
+  color: var(--clr-credits);
   opacity: 0;
   z-index: 1;
   text-align: center;
@@ -356,35 +325,38 @@ html {
   content: " ";
   top: 0;
   bottom: 60%;
-  background-image: linear-gradient(top, rgb(0, 0, 0) 0%, transparent 100%);
+  background-image: linear-gradient(top, var(--clr-black) 0%, transparent 100%);
   pointer-events: none;
 }
 
 .star-wars-intro .space-button {
-  color: #ebd71c;
-  border: 12px solid #ebd71c;
-  font-size: 2rem;
+  color: var(--clr-yellow);
+  border: 8px solid var(--clr-yellow);
+  border-radius: 16px;
+  font-size: 4rem;
   padding: 20px;
   background: transparent;
   text-decoration: none;
   margin: 0 auto;
+  margin-top: 3rem;
   display: block;
   text-align: center;
-  width: 300px;
-  border: 16px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .star-wars-intro .space-button:hover {
-  background-color: #d2be03;
-  border-color: #d2be03;
-  color: black;
+  background-color: var(--clr-yellow);
+  border-color: var(--clr-yellow);
+  color: var(--clr-black);
 }
 
 .star-wars-intro .space-button:active,
 .star-wars-intro .space-button:focus {
-  background-color: #b8a40a;
-  border-color: #b8a40a;
-  color: black;
+  background-color: var(--clr-yellow);
+  border-color: var(--clr-yellow);
+  color: var(--clr-black);
 }
 
 .star-wars-intro .title-content {
@@ -410,7 +382,7 @@ html {
   line-height: 0.8em;
   letter-spacing: -0.05em;
   color: #000;
-  text-shadow: -2px -2px 0 #ebd71c, 2px -2px 0 #ebd71c, -2px 2px 0 #ebd71c, 2px 2px 0 #ebd71c;
+  text-shadow: -2px -2px 0 var(--clr-yellow), 2px -2px 0 var(--clr-yellow), -2px 2px 0 var(--clr-yellow), 2px 2px 0 var(--clr-yellow);
   opacity: 0;
   z-index: 1;
   -webkit-animation: logo 5s ease-out 2.5s;

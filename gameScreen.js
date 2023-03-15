@@ -75,12 +75,12 @@ class GameScreen {
 				`Home Planet: ${character.homePlanet.name}`,
 				`Vehicles: ${
 					!character.vehicles.length
-						? "Owns no vehicles"
+						? "Owns no vehicles."
 						: character.vehicles.map((vehicle) => vehicle.name).join(", ")
 				}`,
 				`Starships: ${
 					!character.starships.length
-						? "Owns no Starships"
+						? "Owns no Starships."
 						: character.starships.map((starship) => starship.name).join(", ")
 				}`,
 			];
@@ -90,7 +90,7 @@ class GameScreen {
 		const showFirstApperanceCallBack = () => {
 			const firstApperance = character.firstApperance();
 			const informationList = [
-				`${character.name} first appeared in ${firstApperance.title} and it was released ${firstApperance.release_date}`,
+				`${character.name} first appeared in ${firstApperance.title} and it was released ${firstApperance.release_date}.`,
 			];
 			this.informationBox.addInformation(informationList);
 		};
@@ -100,22 +100,22 @@ class GameScreen {
 			const mostExpensiveTransportationDevice = character.mostExpensiveTransportationDevice();
 			if (!mostExpensiveTransportationDevice) {
 				informationList.push(
-					`${character.name} doesn't have any transportation devices. They only use legs or wheels`
+					`${character.name} doesn't have any transportation devices. They only use legs or wheels.`
 				);
 			} else if (mostExpensiveTransportationDevice.cost_in_credits === "unknown") {
 				informationList.push(
-					` No one knows how much the ${mostExpensiveTransportationDevice.name} costs. BUT IT IS THE ONLY ONE`
+					` No one knows how much the ${mostExpensiveTransportationDevice.name} costs. BUT IT IS THE ONLY ONE.`
 				);
 			} else {
 				informationList.push(
-					`${character.name}´s most expensive transportation device is ${mostExpensiveTransportationDevice.name}, and it costs ${mostExpensiveTransportationDevice.cost_in_credits} credits`
+					`${character.name}´s most expensive transportation device is the ${mostExpensiveTransportationDevice.name}, and it costs ${mostExpensiveTransportationDevice.cost_in_credits} credits.`
 				);
 			}
 			this.informationBox.addInformation(informationList);
 		};
 
-		this.informationBox.addButton("Most Expensive", showMostExpensiveTransportationDevice);
 		this.informationBox.addButton("Character Information", showInformationCallBack);
+		this.informationBox.addButton("Most Expensive", showMostExpensiveTransportationDevice);
 		this.informationBox.addButton("First movie", showFirstApperanceCallBack);
 		showInformationCallBack();
 		this.informationBox.showBox();
@@ -133,7 +133,9 @@ class GameScreen {
 			const player1 = this.game.getPlayer1();
 			const player2 = this.game.getPlayer2();
 			const informationList = [
-				`${player1.name} and ${player2.name} both appeared in the following movies:`,
+				!coStarring.length
+					? `${player1.name} and ${player2.name} do not appear in any movies together.`
+					: `${player1.name} and ${player2.name} both appeared in the following movies:`,
 				...coStarring,
 			];
 			this.informationBox.addInformation(informationList);
@@ -144,10 +146,10 @@ class GameScreen {
 			const player1 = this.game.getPlayer1();
 			const player2 = this.game.getPlayer2();
 			const informationList = samePlanet
-				? [`${player1.name} and ${player2.name} are both from ${player1.homePlanet.name}`]
+				? [`${player1.name} and ${player2.name} are both from ${player1.homePlanet.name}.`]
 				: [
-						`${player1.name} is from ${player1.homePlanet.name}`,
-						`${player2.name} is from ${player2.homePlanet.name}`,
+						`${player1.name} is from ${player1.homePlanet.name}.`,
+						`${player2.name} is from ${player2.homePlanet.name}.`,
 				  ];
 			this.informationBox.addInformation(informationList);
 		};

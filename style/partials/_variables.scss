@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap");
+
+:root {
+	--character-portrait-width: calc(calc(90vw / 8) - 20px);
+	--character-portrait-border-width: calc(var(--character-portrait-width) / 30);
+	--character-portrait-border-radius: calc(var(--character-portrait-width) / 10);
+	--character-portrait-margin: calc(var(--character-portrait-width) / 20);
+	--character-total-width: calc(
+		var(--character-portrait-width) + calc(2 * var(--character-portrait-margin))
+	);
+	--character-portrait-container-width: calc(4 * var(--character-total-width));
+	--character-full-body-height: calc(100vh - calc(calc(2 * var(--character-total-width)) + 125px));
+
+	// Colors
+
+	--clr-black: hsl(0, 0%, 0%);
+	--clr-yellow: hsl(54, 97%, 42%);
+	--clr-red: hsl(0, 100%, 50%);
+	--clr-blue: hsl(240, 100%, 50%);
+	--clr-credits: hsl(218, 71%, 44%);
+
+	// Font family
+
+	--roboto: "Roboto";
+}
