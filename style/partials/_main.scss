@@ -98,6 +98,7 @@ body {
 .player-name {
 	color: var(--clr-yellow);
 	text-align: center;
+	margin-bottom: 0.5em;
 }
 
 .selected-character .characterPortrait {
@@ -106,12 +107,12 @@ body {
 	margin: calc(var(--character-portrait-margin) * 0.7);
 	border-width: calc(var(--character-portrait-border-width) * 0.7);
 	border-radius: calc(var(--character-portrait-border-radius) * 0.7);
-	transition: all 1s;
+	transition: all 0.7s;
 }
 
 .selected-character {
 	width: calc(var(--character-portrait-container-width) * 0.7);
-	transition: all 1s;
+	transition: all 0.7s;
 }
 
 // UN-SHIFTED

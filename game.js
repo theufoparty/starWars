@@ -26,7 +26,8 @@ class Game {
 
 	fight = () => {
 		const result = {};
-		const { player1, player2 } = this;
+		const player1 = this.player1;
+		const player2 = this.player2;
 
 		if (player1.height > player2.height) {
 			result.tallest = `${player1.name} (${player1.height}) is taller than ${player2.name} (${player2.height})`;

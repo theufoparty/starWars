@@ -1,8 +1,10 @@
 class Character {
-	constructor(characterData, isGood) {
+	constructor(characterData, isGood, id) {
+		this.id = id;
 		this.isGood = isGood;
+		this.fullbodyUrl = `/full-body/${id}.png`;
+		this.portraitUrl = `/portraits/${id}.png`;
 		const {
-			url,
 			name,
 			height,
 			mass,
@@ -15,9 +17,6 @@ class Character {
 			vehicles,
 			starships,
 		} = characterData;
-		this.id = url.slice(29).slice(0, -1);
-		this.fullbodyUrl = `/full-body/${this.id}.png`;
-		this.portraitUrl = `/portraits/${this.id}.png`;
 		this.name = name;
 		this.height = Number(height);
 		this.mass = Number(mass);
@@ -58,15 +57,7 @@ class Character {
 		return Number(priceString);
 	};
 
-	firstApperance = () => {
-		const sortedMovies = this.movies.sort((a, b) => {
-			return new Date(a.release_date) - new Date(b.release_date);
-		});
-		return sortedMovies[0];
-	};
-
 	mostExpensiveVehicle = () => {
-		console.log(this.vehicles);
 		const mostExpensive = this.vehicles.sort((a, b) => {
 			return this.parsePrice(b.cost_in_credits) - this.parsePrice(a.cost_in_credits);
 		});
@@ -74,11 +65,17 @@ class Character {
 	};
 
 	mostExpensiveStarship = () => {
-		console.log(this.starships);
 		const mostExpensive = this.starships.sort((a, b) => {
 			return this.parsePrice(b.cost_in_credits) - this.parsePrice(a.cost_in_credits);
 		});
 		return mostExpensive[0];
+	};
+
+	firstApperance = () => {
+		const sortedMovies = this.movies.sort((a, b) => {
+			return new Date(a.release_date) - new Date(b.release_date);
+		});
+		return sortedMovies[0];
 	};
 
 	mostExpensiveTransportationDevice = () => {
@@ -89,16 +86,5 @@ class Character {
 			this.parsePrice(mostExpensiveStarship?.cost_in_credits)
 			? mostExpensiveStarship
 			: mostExpensiveVehicle;
-	};
-
-	printCharacter = () => {
-		console.log(`Name; ${this.name}`);
-		console.log(`Heigth: ${this.height}`);
-		console.log(`Mass: ${this.mass}`);
-		console.log(`Hair Color:${this.hairColor}`);
-		console.log(`Skin Color: ${this.skinColor}`);
-		console.log(`Eye Color: ${this.eyeColor}`);
-		console.log(`Gender: ${this.gender}`);
-		console.log(`Movies: ${this.movies.map((movie) => movie.title).join(", ")}`);
 	};
 }

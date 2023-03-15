@@ -1,4 +1,5 @@
 class GameScreen {
+	game = new Game();
 	informationBox = new InformationBox();
 	goodCharacterContainer = document.querySelector(".good-characters-container");
 	evilCharacterContainer = document.querySelector(".evil-characters-container");
@@ -7,6 +8,23 @@ class GameScreen {
 	player1Container = document.querySelector(".player1-container");
 	player2Container = document.querySelector(".player2-container");
 	fightButton = document.querySelector(".fight-button");
+
+	constructor() {
+		this.player1Container.addEventListener("click", () => {
+			const character = this.game.getPlayer1();
+			this.showCharacterInformation(character);
+		});
+
+		this.player2Container.addEventListener("click", () => {
+			const character = this.game.getPlayer2();
+			this.showCharacterInformation(character);
+		});
+
+		this.fightButton.addEventListener("click", () => {
+			const result = this.game.fight();
+			this.showFightResult(result);
+		});
+	}
 
 	setPlayer = (character) => {
 		const playerContainer = character.isGood ? this.player1Container : this.player2Container;
@@ -31,34 +49,31 @@ class GameScreen {
 		characterPortrait.classList.add("characterPortrait");
 		characterPortrait.src = character.portraitUrl;
 		characterPortrait.id = character.id;
+		if (character.isGood) {
+			this.goodCharacterPortraitsContainer.append(characterPortrait);
+		} else {
+			this.evilCharacterPortraitsContainer.append(characterPortrait);
+		}
 		characterPortrait.addEventListener("click", () => {
 			if (character.isGood) {
 				const player1 = this.game.getPlayer1();
+				this.goodCharacterContainer.classList.add("selected-character");
 				if (player1) {
 					const previousPortrait = document.getElementById(player1.id);
 					previousPortrait.classList.remove("darken");
 				}
 			} else {
 				const player2 = this.game.getPlayer2();
+				this.evilCharacterContainer.classList.add("selected-character");
 				if (player2) {
 					const previousPortrait = document.getElementById(player2.id);
 					previousPortrait.classList.remove("darken");
 				}
 			}
-			if (character.isGood) {
-				this.goodCharacterContainer.classList.add("selected-character");
-			} else {
-				this.evilCharacterContainer.classList.add("selected-character");
-			}
 			characterPortrait.classList.add("darken");
 			this.game.setPlayer(character);
 			this.setPlayer(character);
 		});
-		if (character.isGood) {
-			this.goodCharacterPortraitsContainer.append(characterPortrait);
-		} else {
-			this.evilCharacterPortraitsContainer.append(characterPortrait);
-		}
 	};
 
 	showCharacterInformation = (character) => {
@@ -108,7 +123,11 @@ class GameScreen {
 				);
 			} else {
 				informationList.push(
-					`${character.name}´s most expensive transportation device is the ${mostExpensiveTransportationDevice.name}, and it costs ${mostExpensiveTransportationDevice.cost_in_credits} credits.`
+					`${character.name}´s most expensive transportation device is the ${
+						mostExpensiveTransportationDevice.name
+					}, and it costs ${Number(
+						mostExpensiveTransportationDevice.cost_in_credits
+					).toLocaleString("sv-SE")} credits.`
 				);
 			}
 			this.informationBox.addInformation(informationList);
@@ -161,21 +180,4 @@ class GameScreen {
 
 		this.informationBox.showBox();
 	};
-
-	constructor(game) {
-		this.game = game;
-		this.player1Container.addEventListener("click", () => {
-			const character = this.game.getPlayer1();
-			this.showCharacterInformation(character);
-		});
-		this.player2Container.addEventListener("click", () => {
-			const character = this.game.getPlayer2();
-			this.showCharacterInformation(character);
-		});
-
-		this.fightButton.addEventListener("click", () => {
-			const result = this.game.fight();
-			this.showFightResult(result);
-		});
-	}
 }

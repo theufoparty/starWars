@@ -28,7 +28,6 @@ class InformationBox {
 		let i = 0;
 		return new Promise((resolve) => {
 			const interval = setInterval(() => {
-				console.log("setting inner test");
 				paragraphElement.innerText = paragraphText.slice(0, i);
 				i++;
 				if (i > paragraphText.length) {
@@ -44,7 +43,6 @@ class InformationBox {
 		for (let i = 0; i < informationList.length; i++) {
 			const paragraphText = informationList[i];
 			await this.typeWrite(paragraphText);
-			console.log("done", i);
 		}
 	};
 
