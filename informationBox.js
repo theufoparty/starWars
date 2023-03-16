@@ -34,7 +34,7 @@ class InformationBox {
 					clearInterval(interval);
 					resolve();
 				}
-			}, 20);
+			}, 5);
 		});
 	};
 
