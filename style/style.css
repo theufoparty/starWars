@@ -68,6 +68,37 @@
   color: var(--clr-black);
 }
 
+.star-wars-intro .space-button {
+  color: var(--clr-yellow);
+  border: 8px solid var(--clr-yellow);
+  border-radius: 16px;
+  font-size: 4rem;
+  font-weight: bold;
+  padding: 20px;
+  background: transparent;
+  text-decoration: none;
+  margin: 0 auto;
+  margin-top: 3rem;
+  display: block;
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.star-wars-intro .space-button:hover {
+  background-color: var(--clr-yellow);
+  border-color: var(--clr-yellow);
+  color: var(--clr-black);
+}
+
+.star-wars-intro .space-button:active,
+.star-wars-intro .space-button:focus {
+  background-color: var(--clr-yellow);
+  border-color: var(--clr-yellow);
+  color: var(--clr-black);
+}
+
 :root {
   --character-portrait-width: calc(calc(90vw / 8) - 20px);
   --character-portrait-border-width: calc(var(--character-portrait-width) / 30);
@@ -88,6 +119,18 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
   margin: 0;
 }
 
@@ -333,37 +376,6 @@ html {
   pointer-events: none;
 }
 
-.star-wars-intro .space-button {
-  color: var(--clr-yellow);
-  border: 8px solid var(--clr-yellow);
-  border-radius: 16px;
-  font-size: 4rem;
-  font-weight: bold;
-  padding: 20px;
-  background: transparent;
-  text-decoration: none;
-  margin: 0 auto;
-  margin-top: 3rem;
-  display: block;
-  text-align: center;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.star-wars-intro .space-button:hover {
-  background-color: var(--clr-yellow);
-  border-color: var(--clr-yellow);
-  color: var(--clr-black);
-}
-
-.star-wars-intro .space-button:active,
-.star-wars-intro .space-button:focus {
-  background-color: var(--clr-yellow);
-  border-color: var(--clr-yellow);
-  color: var(--clr-black);
-}
-
 .star-wars-intro .title-content {
   position: absolute;
   top: 100%;
@@ -375,7 +387,6 @@ html {
   text-align: center;
 }
 
-/* Main Image Styles */
 .star-wars-intro .main-logo {
   position: absolute;
   width: 2.6em;
