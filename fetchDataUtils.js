@@ -1483,7 +1483,7 @@ const fallbackData = [
 	},
 ];
 
-const USE_FALLBACK = false;
+const USE_FALLBACK = true;
 
 const fetchData = (url) => {
 	const fallback = fallbackData.find((data) => data.url === url);

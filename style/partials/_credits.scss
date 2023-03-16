@@ -21,7 +21,7 @@ html {
 
 .star-wars-intro p.intro-text {
 	position: relative;
-	max-width: 16em;
+	max-width: 22em;
 	font-size: 200%;
 	font-weight: 400;
 	margin: 20% auto;
@@ -81,7 +81,7 @@ html {
 	margin-left: -1.3em;
 	line-height: 0.8em;
 	letter-spacing: -0.05em;
-	color: #000;
+	color: var(--clr-black);
 	text-shadow: -2px -2px 0 var(--clr-yellow), 2px -2px 0 var(--clr-yellow),
 		-2px 2px 0 var(--clr-yellow), 2px 2px 0 var(--clr-yellow);
 	opacity: 0;
