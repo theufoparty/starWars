@@ -8,39 +8,30 @@
 		<link rel="stylesheet" href="style/style.css" />
 	</head>
 	<body>
-		<div class="h2-container">
-			<img class="logo" src="assets/Logo.png" alt="StarWars Logo" />
-		</div>
-		<div class="good-characters-container">
-			<h2 class="pick-player1">PICK PLAYER 1</h2>
-			<div class="good-characters"></div>
-		</div>
-		<div class="evil-characters-container">
-			<h2 class="pick-player2">PICK PLAYER 2</h2>
-			<div class="evil-characters"></div>
-		</div>
+		<div class="star-wars-intro">
+			<p class="intro-text">A long time ago in a galaxy far, far away...</p>
 
-		<button class="fight-button">FIGHT</button>
+			<h2 class="main-logo">
+				<img src="assets/Logo.png" alt="Star Wars Logo" />
+			</h2>
 
-		<div class="information-box hidden">
-			<div class="textarea"></div>
-			<div class="button-container"></div>
-		</div>
-		<div class="backdrop hidden"></div>
+			<div class="main-content">
+				<div class="title-content">
+					<p class="content-header">EPISODE X<br />A Galactic Tournament</p>
 
-		<div class="player1-container">
-			<img class="player-img hidden slideright" alt="Character image for Player 1" />
-			<p class="player-name"></p>
-		</div>
-		<div class="player2-container">
-			<img class="player-img hidden slideleft" alt="Character image for Player 2" />
-			<p class="player-name"></p>
+					<br />
+
+					<p class="content-body">
+						It is a period of civil war. Rebels and imperials from across the galaxy have gathered
+						to take part in a galactic tournament.
+
+						<br /><br />The fate of the galaxy will be decided, not by mortal combat, but instead by
+						seeing who's tallest, heaviest or who has the most expensive starship.
+					</p>
+
+					<a href="game.html" class="space-button">Play the Game!</a>
+				</div>
+			</div>
 		</div>
 	</body>
-	<script src="fetchDataUtils.js"></script>
-	<script src="informationBox.js"></script>
-	<script src="game.js"></script>
-	<script src="gameScreen.js"></script>
-	<script src="character.js"></script>
-	<script src="script.js"></script>
 </html>

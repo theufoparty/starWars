@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style/style.css" />
+	</head>
+	<body>
+		<div class="h2-container">
+			<img class="logo" src="assets/Logo.png" alt="StarWars Logo" />
+		</div>
+		<div class="good-characters-container">
+			<h2 class="pick-player1">PICK PLAYER 1</h2>
+			<div class="good-characters"></div>
+		</div>
+		<div class="evil-characters-container">
+			<h2 class="pick-player2">PICK PLAYER 2</h2>
+			<div class="evil-characters"></div>
+		</div>
+
+		<button class="fight-button">FIGHT</button>
+
+		<div class="information-box hidden">
+			<div class="textarea"></div>
+			<div class="button-container"></div>
+		</div>
+		<div class="backdrop hidden"></div>
+
+		<div class="player1-container">
+			<img class="player-img hidden slideright" alt="Character image for Player 1" />
+			<p class="player-name"></p>
+		</div>
+		<div class="player2-container">
+			<img class="player-img hidden slideleft" alt="Character image for Player 2" />
+			<p class="player-name"></p>
+		</div>
+	</body>
+	<script src="fetchDataUtils.js"></script>
+	<script src="informationBox.js"></script>
+	<script src="game.js"></script>
+	<script src="gameScreen.js"></script>
+	<script src="character.js"></script>
+	<script src="script.js"></script>
+</html>
