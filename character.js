@@ -2,8 +2,8 @@ class Character {
 	constructor(characterData, isGood, id) {
 		this.id = id;
 		this.isGood = isGood;
-		this.fullbodyUrl = `/full-body/${id}.png`;
-		this.portraitUrl = `/portraits/${id}.png`;
+		this.fullbodyUrl = `full-body/${id}.png`;
+		this.portraitUrl = `portraits/${id}.png`;
 		const {
 			name,
 			height,
