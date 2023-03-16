@@ -29,7 +29,13 @@ class Game {
 		const player1 = this.player1;
 		const player2 = this.player2;
 
-		if (player1.height > player2.height) {
+		if (Number.isNaN(player1.height) && !Number.isNaN(player2.height)) {
+			result.tallest = `${player1.name}'s height is unknown, ${player2.name} height is ${player2.height} cm.`;
+		} else if (!Number.isNaN(player1.height) && Number.isNaN(player2.height)) {
+			result.tallest = `${player1.name}'s' height is ${player1.height} cm, ${player2.name}'s height is unknown.`;
+		} else if (Number.isNaN(player1.height) && Number.isNaN(player2.height)) {
+			result.tallest = `Neither ${player1.name} or ${player2.name}'s height is known.`;
+		} else if (player1.height > player2.height) {
 			result.tallest = `${player1.name} (${player1.height} cm) is taller than ${player2.name} (${player2.height} cm).`;
 		} else if (player1.height === player2.height) {
 			result.tallest = `${player2.name} (${player2.height} cm) is equal to ${player1.name} (${player1.height} cm).`;
@@ -37,8 +43,14 @@ class Game {
 			result.tallest = `${player2.name} (${player2.height} cm) is taller than ${player1.name} (${player1.height} cm).`;
 		}
 
-		if (player1.mass > player2.mass) {
-			result.heaviest = `${player1.name} (${player1.mass} kg) is heavier than ${player2.name} (${player2.mass} kg)`;
+		if (Number.isNaN(player1.mass) && !Number.isNaN(player2.mass)) {
+			result.heaviest = `${player1.name}'s weight is unknown, ${player2.name} weight is ${player2.mass} kg.`;
+		} else if (!Number.isNaN(player1.mass) && Number.isNaN(player2.mass)) {
+			result.heaviest = `${player1.name}'s weight is ${player1.mass} kg, ${player2.name}'s weight is unknown.`;
+		} else if (Number.isNaN(player1.mass) && Number.isNaN(player2.mass)) {
+			result.heaviest = `Neither ${player1.name} or ${player2.name}'s weight is known.`;
+		} else if (player1.mass > player2.mass) {
+			result.heaviest = `${player1.name} (${player1.mass} kg) is heavier than ${player2.name} (${player2.mass} kg).`;
 		} else if (player1.mass === player2.mass) {
 			result.heaviest = `${player2.name} weight (${player2.mass} kg) is equal to ${player1.name} weight (${player1.mass} kg).`;
 		} else {
